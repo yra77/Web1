@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic"
+             x:Class="Web1.Views.MainPage"
+             xmlns:material="clr-namespace:Web1.Controls"
+             prism:Navigation.CanNavigate="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="Main">
+
+
+    <ScrollView HorizontalOptions="Fill"
+                Padding="20">
+    <Grid RowSpacing="50"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+
+        <Entry Text="{Binding InpPath}"
+               Grid.Row="0"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontSize="12"
+               BackgroundColor="Transparent"
+               TextColor="Black"/>
+
+        <!--<material:CustomEntry Grid.Row="1"
+                               InputText="{Binding Login, Mode=TwoWay}"
+                              LabelName="Телефон" 
+                              SelectedType="digit"
+                              IsValid="{Binding IsValidInput, Mode=TwoWay}"
+                              LabelColor="{DynamicResource m_secondLabel}"
+                              BorderColor="{DynamicResource m_secondLabel}"/>-->
+
+        <material:MyEntry Grid.Row="1"
+                          HorizontalOptions="FillAndExpand"
+                          InputText="{Binding Login, Mode=TwoWay}"
+                          ErrorText="10 цифр 0681112233"
+                          LabelName="Телефон" 
+                          SelectedType="digit"
+                          Round="40"
+                          BorderThinck="1"
+                          IsValid="{Binding IsValidInput, Mode=TwoWay}"
+                          Text_Color="{DynamicResource entry_Text}"
+                          LabelColor="{DynamicResource entry_Label}"
+                          BorderColor="{DynamicResource entry_Border}"
+                          Background_Color="{DynamicResource entry_Background}"/>
+
+         <material:MyEntry Grid.Row="2"
+                          HorizontalOptions="FillAndExpand"
+                          InputText="{Binding Password, Mode=TwoWay}"
+                          ErrorText="8-10 символив, перша велика літера, у кінці одну цифру"
+                          LabelName="Пароль" 
+                          SelectedType="password"
+                          Round="40"
+                          BorderThinck="1"
+                          IsValid="{Binding IsValidInput, Mode=TwoWay}"
+                          Text_Color="{DynamicResource entry_Text}"
+                          LabelColor="{DynamicResource entry_Label}"
+                          BorderColor="{DynamicResource entry_Border}"
+                          Background_Color="{DynamicResource entry_Background}"/>
+
+        <StackLayout Grid.Row="3"
+                     Orientation="Horizontal"
+                               Spacing="50"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center">
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_google"
+                     WidthRequest="24"
+                     HeightRequest="24"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="google"/>
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_apple"
+                     WidthRequest="24"
+                     HeightRequest="22"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="apple"/>
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_facebook"
+                     WidthRequest="24"
+                     HeightRequest="24"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="facebook"/>
+
+        </StackLayout>
+
+        <!--<ImageButton VerticalOptions="Center"
+                     Source="{OnPlatform Android='ic_google', iOS='ic_apple'}"
+                     WidthRequest="28"
+                     HeightRequest="28"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="{OnPlatform Android='google', iOS='apple'}"/>-->
+
+        <Button Grid.Row="4"
+                Text="Ok"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                Margin="0,0,0,0"
+                FontSize="16"
+                BackgroundColor="{DynamicResource auth_btn_background}"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="{OnPlatform Android=40, iOS=20}"
+                Command="{Binding FwdBtn}"/>
+
+        <Button Grid.Row="5"
+                Text="Немає облікового запису? Реєстрація"
+                TextColor="{DynamicResource Gray300}"
+                FontSize="14"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                BackgroundColor="{DynamicResource icon_background}"
+                Command="{Binding GoSignUp_Btn}"/>
+
+    </Grid>
+    </ScrollView>
+</ContentPage>
+

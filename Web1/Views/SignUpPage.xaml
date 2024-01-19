@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Web1.Views.SignUpPage"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic"
+             xmlns:material="clr-namespace:Web1.Controls"
+             prism:Navigation.CanNavigate="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="Реєстрація">
+
+
+    <ScrollView>
+
+        <Grid Padding="20"
+              RowSpacing="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+            Text="Реєстрація"
+            FontSize="18"
+            FontAttributes="Bold"
+            CharacterSpacing="1"
+            TextColor="{DynamicResource mainText}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+
+        <material:MyEntry Grid.Row="1"
+                          InputText="{Binding Login, Mode=TwoWay}"
+                          ErrorText="10 цифр 0681112233"
+                          LabelName="Телефон" 
+                          SelectedType="digit"
+                          Round="40"
+                          BorderThinck="1"
+                          IsValid="{Binding IsValidInput, Mode=TwoWay}"
+                          Text_Color="{DynamicResource entry_Text}"
+                          LabelColor="{DynamicResource entry_Label}"
+                          BorderColor="{DynamicResource entry_Border}"
+                          Background_Color="{DynamicResource entry_Background}"/>
+
+         <material:MyEntry Grid.Row="2"
+                          InputText="{Binding Password, Mode=TwoWay}"
+                          ErrorText="8-10 символив, перша велика літера, у кінці одну цифру"
+                          LabelName="Пароль" 
+                          SelectedType="password"
+                          Round="40"
+                          BorderThinck="1"
+                          IsValid="{Binding IsValidInput, Mode=TwoWay}"
+                          Text_Color="{DynamicResource entry_Text}"
+                          LabelColor="{DynamicResource entry_Label}"
+                          BorderColor="{DynamicResource entry_Border}"
+                          Background_Color="{DynamicResource entry_Background}"/>
+
+
+        <HorizontalStackLayout Grid.Row="3"
+                               Spacing="50"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center">
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_google"
+                     WidthRequest="24"
+                     HeightRequest="24"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="google"/>
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_apple"
+                     WidthRequest="24"
+                     HeightRequest="22"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="apple"/>
+
+            <ImageButton VerticalOptions="Center"
+                     Source="ic_facebook"
+                     WidthRequest="24"
+                     HeightRequest="24"
+                     Aspect="Fill"
+                     BackgroundColor="{DynamicResource icon_background}"
+                     Command="{Binding AuthWith_Btn}"
+                     CommandParameter="facebook"/>
+
+        </HorizontalStackLayout>
+
+
+        <Button Grid.Row="4"
+                Text="Ok"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                Margin="0,0,0,0"
+                FontSize="16"
+                BackgroundColor="{DynamicResource auth_btn_background}"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="{OnPlatform Android=40, iOS=20}"
+                Command="{Binding OkBtn}"/>
+
+        <Button Grid.Row="5"
+                Text="Назад"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                Margin="0,0,0,0"
+                FontSize="16"
+                BackgroundColor="{DynamicResource auth_btn_background}"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="{OnPlatform Android=40, iOS=20}"
+                Command="{Binding GoBack_Btn}"/>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
