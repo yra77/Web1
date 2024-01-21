@@ -261,14 +261,17 @@ namespace Web1.ViewModels
                     int res = 0;
                     switch (item.Quantity)
                     {
-                        case 3:
-                            res = 5;
+                       case 3:
+                            if (item.Digit == 0 || item.Digit == 9) res = 6;
+                            else res = 3;
                             break;
                         case 4:
-                            res = 30;
+                            if (item.Digit == 0 || item.Digit == 9) res = 30;
+                            else res = 15;
                             break;
                         case 5:
-                            res = 70;
+                            if (item.Digit == 0 || item.Digit == 9) res = 60;
+                            else res = 30;
                             break;
                         default:
                             break;
