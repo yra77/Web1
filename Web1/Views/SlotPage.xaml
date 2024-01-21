@@ -114,16 +114,16 @@
                 Background="#0b8f8b">
                         <sv:SlotView.Images>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>slot0img.png</x:String>
-                                <x:String>slot1img.png</x:String>
-                                <x:String>slot2img.png</x:String>
-                                <x:String>slot3img.png</x:String>
-                                <x:String>slot4img.png</x:String>
-                                <x:String>slot5img.png</x:String>
-                                <x:String>slot6img.png</x:String>
-                                <x:String>slot7img.png</x:String>
-                                <x:String>slot8img.png</x:String>
-                                <x:String>slot9img.png</x:String>
+                                <x:String>i0.png</x:String>
+                                <x:String>i1.png</x:String>
+                                <x:String>i2.png</x:String>
+                                <x:String>i3.png</x:String>
+                                <x:String>i4.png</x:String>
+                                <x:String>i5.png</x:String>
+                                <x:String>i6.png</x:String>
+                                <x:String>i7.png</x:String>
+                                <x:String>i8.png</x:String>
+                                <x:String>i9.png</x:String>
                             </x:Array>
                         </sv:SlotView.Images>
                     </sv:SlotView>
@@ -141,16 +141,16 @@
                 Background="#0b8f8b">
                         <sv:SlotView.Images>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>slot0img.png</x:String>
-                                <x:String>slot1img.png</x:String>
-                                <x:String>slot2img.png</x:String>
-                                <x:String>slot3img.png</x:String>
-                                <x:String>slot4img.png</x:String>
-                                <x:String>slot5img.png</x:String>
-                                <x:String>slot6img.png</x:String>
-                                <x:String>slot7img.png</x:String>
-                                <x:String>slot8img.png</x:String>
-                                <x:String>slot9img.png</x:String>
+                               <x:String>i0.png</x:String>
+                                <x:String>i1.png</x:String>
+                                <x:String>i2.png</x:String>
+                                <x:String>i3.png</x:String>
+                                <x:String>i4.png</x:String>
+                                <x:String>i5.png</x:String>
+                                <x:String>i6.png</x:String>
+                                <x:String>i7.png</x:String>
+                                <x:String>i8.png</x:String>
+                                <x:String>i9.png</x:String>
                             </x:Array>
                         </sv:SlotView.Images>
                     </sv:SlotView>
@@ -169,16 +169,16 @@
                 Background="#0b8f8b">
                         <sv:SlotView.Images>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>slot0img.png</x:String>
-                                <x:String>slot1img.png</x:String>
-                                <x:String>slot2img.png</x:String>
-                                <x:String>slot3img.png</x:String>
-                                <x:String>slot4img.png</x:String>
-                                <x:String>slot5img.png</x:String>
-                                <x:String>slot6img.png</x:String>
-                                <x:String>slot7img.png</x:String>
-                                <x:String>slot8img.png</x:String>
-                                <x:String>slot9img.png</x:String>
+                                <x:String>i0.png</x:String>
+                                <x:String>i1.png</x:String>
+                                <x:String>i2.png</x:String>
+                                <x:String>i3.png</x:String>
+                                <x:String>i4.png</x:String>
+                                <x:String>i5.png</x:String>
+                                <x:String>i6.png</x:String>
+                                <x:String>i7.png</x:String>
+                                <x:String>i8.png</x:String>
+                                <x:String>i9.png</x:String>
                             </x:Array>
                         </sv:SlotView.Images>
                     </sv:SlotView>
@@ -197,16 +197,16 @@
                 Background="#0b8f8b">
                         <sv:SlotView.Images>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>slot0img.png</x:String>
-                                <x:String>slot1img.png</x:String>
-                                <x:String>slot2img.png</x:String>
-                                <x:String>slot3img.png</x:String>
-                                <x:String>slot4img.png</x:String>
-                                <x:String>slot5img.png</x:String>
-                                <x:String>slot6img.png</x:String>
-                                <x:String>slot7img.png</x:String>
-                                <x:String>slot8img.png</x:String>
-                                <x:String>slot9img.png</x:String>
+                                <x:String>i0.png</x:String>
+                                <x:String>i1.png</x:String>
+                                <x:String>i2.png</x:String>
+                                <x:String>i3.png</x:String>
+                                <x:String>i4.png</x:String>
+                                <x:String>i5.png</x:String>
+                                <x:String>i6.png</x:String>
+                                <x:String>i7.png</x:String>
+                                <x:String>i8.png</x:String>
+                                <x:String>i9.png</x:String>
                             </x:Array>
                         </sv:SlotView.Images>
                     </sv:SlotView>
@@ -225,16 +225,16 @@
                 Background="#0b8f8b">
                         <sv:SlotView.Images>
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>slot0img.png</x:String>
-                                <x:String>slot1img.png</x:String>
-                                <x:String>slot2img.png</x:String>
-                                <x:String>slot3img.png</x:String>
-                                <x:String>slot4img.png</x:String>
-                                <x:String>slot5img.png</x:String>
-                                <x:String>slot6img.png</x:String>
-                                <x:String>slot7img.png</x:String>
-                                <x:String>slot8img.png</x:String>
-                                <x:String>slot9img.png</x:String>
+                                <x:String>i0.png</x:String>
+                                <x:String>i1.png</x:String>
+                                <x:String>i2.png</x:String>
+                                <x:String>i3.png</x:String>
+                                <x:String>i4.png</x:String>
+                                <x:String>i5.png</x:String>
+                                <x:String>i6.png</x:String>
+                                <x:String>i7.png</x:String>
+                                <x:String>i8.png</x:String>
+                                <x:String>i9.png</x:String>
                             </x:Array>
                         </sv:SlotView.Images>
                     </sv:SlotView>
