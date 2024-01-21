@@ -11,7 +11,10 @@ namespace Web1.Services.WinsSlot
 
 
         private int[] arr = new int[15];
-
+//index images
+        // 0, 3, 6, 9, 12
+        // 1, 4, 7, 10, 13
+        // 2, 5, 8, 11, 14
 
         public FoundWinLines()
         {
