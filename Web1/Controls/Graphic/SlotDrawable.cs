@@ -65,11 +65,14 @@ namespace Web1.Controls.Graphic
 
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+  MainThread.BeginInvokeOnMainThread(() =>
+            {
 #if ANDROID
-            canvas.ClipRectangle(dirtyRect);
+                canvas.ClipRectangle(dirtyRect);
 #endif
-            canvas.SetFillPaint(BackgroundPaint, dirtyRect);
-            canvas.FillRectangle(dirtyRect);
+                canvas.SetFillPaint(BackgroundPaint, dirtyRect);
+                canvas.FillRectangle(dirtyRect);
+            });
             if (Images is null) return;
             if (Images.Count != ImageCount) return;
 
@@ -82,19 +85,19 @@ namespace Web1.Controls.Graphic
                 var imageIndex = ((int)Math.Floor(_scrollOffset / imageSize) + i) % Images.Count;
 
                 float x = 0;
-                if (Direction == SlotDirection.Left)
+               if (Direction == SlotDirection.Left)
                 {
-                    x = i * imageSize - (_scrollOffset % imageSize);
+                    x = i * (imageSize+10) - (_scrollOffset % (imageSize + 10));
                 }
                 else if (Direction == SlotDirection.Right)
                 {
-                    x = Width - (i * imageSize) + (_scrollOffset % imageSize) - imageSize;
+                    x = Width - (i * (imageSize + 10)) + (_scrollOffset % (imageSize + 10)) - (imageSize + 10);
                 }
                 else
                 {
-                    x = Width / 2 - imageSize / 2;
+                    x = Width / 2 - (imageSize + 10) / 2;
                 }
-
+                
                 float y = 0;
                 if (Direction == SlotDirection.Up)
                 {
@@ -109,7 +112,7 @@ namespace Web1.Controls.Graphic
                     y = Height / 2 - imageSize / 2;
                 }
 
-                canvas.DrawImage(Images[imageIndex], x, y, imageSize, imageSize);
+                MainThread.BeginInvokeOnMainThread(()=>canvas.DrawImage(Images[imageIndex], x, y, imageSize+10, imageSize+10));
             }
 
             if (IsSpinning && StopIndex < 0)
