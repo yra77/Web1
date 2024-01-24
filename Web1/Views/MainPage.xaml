@@ -122,7 +122,7 @@
                 TextColor="White"
                 FontAttributes="Bold"
                 CornerRadius="{OnPlatform Android=40, iOS=20}"
-                Command="{Binding FwdBtn}"/>
+                Command="{Binding OkBtn}"/>
 
         <Button Grid.Row="5"
                 Text="Немає облікового запису? Реєстрація"

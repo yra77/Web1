@@ -1,15 +1,20 @@
 ﻿
 
+using Web1.Services.Auth;
+
+
 namespace Web1.ViewModels
 {
 	public class MainPageViewModel : BaseViewModel, INavigatedAware
 	{
 
 
-		public MainPageViewModel(PageDialogService dialogService,
+		public MainPageViewModel(IAuth auth,
+                                 PageDialogService dialogService,
                                  ISemanticScreenReader screenReader,
                                  INavigationService navigationService)
 		{
+            _auth = auth;
             _dialogService = dialogService;
             _screenReader = screenReader;
             _navigationService = navigationService;
@@ -52,7 +57,7 @@ namespace Web1.ViewModels
         }
 
 
-        public DelegateCommand FwdBtn => new DelegateCommand(FwdClick);
+        public DelegateCommand OkBtn => new DelegateCommand(OkClick);
         public DelegateCommand GoSignUp_Btn => new DelegateCommand(GoSignUpClick);
         public DelegateCommand<string> AuthWith_Btn => new DelegateCommand<string>(AuthGoogleApple);
 
@@ -69,14 +74,16 @@ namespace Web1.ViewModels
             await _navigationService.NavigateAsync("SlotPage");
         }
 
-        private async void FwdClick()
+        private async void OkClick()
         {
-           // System.Console.WriteLine($"Ppppppppppp {IsValidInput}");
-            if (InpPath?.Length > 10)
-            {
-                var parameters = new NavigationParameters { { "path", InpPath } };
-                await _navigationService.NavigateAsync("HomePage", parameters);
-            }
+            // System.Console.WriteLine($"Ppppppppppp {IsValidInput}");
+            //if (InpPath?.Length > 10)
+            //{
+            //    var parameters = new NavigationParameters { { "path", InpPath } };
+            //    await _navigationService.NavigateAsync("HomePage", parameters);
+            //}
+
+            await _auth.AuthAsync(Login, Password);
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)

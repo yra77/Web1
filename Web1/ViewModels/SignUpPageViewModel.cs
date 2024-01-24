@@ -1,15 +1,20 @@
 ﻿
 
+using Web1.Services.Auth;
+
+
 namespace Web1.ViewModels
 {
 	public class SignUpPageViewModel : BaseViewModel, INavigatedAware
     {
 
 
-		public SignUpPageViewModel(PageDialogService dialogService,
-                                 ISemanticScreenReader screenReader,
-                                 INavigationService navigationService)
+		public SignUpPageViewModel(IAuth auth,
+                                   PageDialogService dialogService,
+                                   ISemanticScreenReader screenReader,
+                                   INavigationService navigationService)
         {
+            _auth = auth;
             _dialogService = dialogService;
             _screenReader = screenReader;
             _navigationService = navigationService;
