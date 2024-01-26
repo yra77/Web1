@@ -9,7 +9,7 @@ namespace Web1.Services.Auth
     internal class Auth : IAuth
     {
 
-
+        public static string Token;
         private readonly IRepository _repository;
 
 
@@ -19,29 +19,36 @@ namespace Web1.Services.Auth
         }
 
 
-        public async Task<(bool, (string, LoginModel))> AuthAsync(string email, string password)
+        public async Task<OkResponse> AuthAsync(string email, string password)
         {
+            LoginModel loginModel = new() { Email = email, Password = password };
 
-            string str = null;
-            LoginModel loginModel = new LoginModel() { Email = email, Password = password};
-
-                    try
-                    {
-                       var res = await _repository.GetDataAsync<LoginModel>(loginModel);
-
-                        if (res != null)
-                        {
-                                str = "No Found password";
-                        }
-                    }
-                    catch
-                    {
-                        str = "PPPPPPPPPPPPPPPPPPPP";
-                    }
-
-            return (false, (str, null));
+            try
+            {
+                var res = await _repository.GetDataAsync<LoginModel>(loginModel);
+                OkResponse response = new() { Email = res["email"].ToString(), Token = res["token"].ToString() };
+                Token = response.Token;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
+        public async Task<OkResponse> InsertAsync(RegisterModel profile)
+        {
+            try
+            {
+                var res = await _repository.InsertAsync<RegisterModel>(profile);
+                OkResponse response = new() { Email = res["email"].ToString(), Token = res["token"].ToString() };
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         //public async Task<(bool, string)> RegistrAsync(Login profile)
         //{
@@ -112,24 +119,5 @@ namespace Web1.Services.Auth
         //    }
         //    return false;
         //}
-
-        //private async Task<bool> InsertAsync(Login profile)
-        //{
-        //    try
-        //    {
-        //        var res = await _restService.GetDataAsync<Login>("Email", profile.Email);
-
-        //        if (res == null && await _restService.InsertAsync<Login>(profile))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //        return false;
-        //}
-
     }
 }

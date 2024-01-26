@@ -4,6 +4,7 @@ using Web1.Models;
 
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 
 namespace Web1.Services.Repository
@@ -117,54 +118,60 @@ namespace Web1.Services.Repository
             return Items;
         }
 
-        public async Task<T> GetDataAsync<T>(LoginModel data) where T : class, new()
+        public async Task<JsonObject> GetDataAsync<T>(T data) where T : class, new()
         {
-            T login = null;
-
             try
             {
-                StringContent content = new(Newtonsoft.Json.JsonConvert.SerializeObject(data),
-                                                              Encoding.UTF8, "application/json");
+                StringContent content = new(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await _client.PostAsync(GetPath<T>(), content);
-                Console.WriteLine(@"AAAAAAAAAAAAAAAAAA" + response.Content + " " + response.Headers + " " + response.IsSuccessStatusCode);
+                string cont = await response.Content.ReadAsStringAsync();
+
                 if (response.IsSuccessStatusCode)
                 {
-                    string cont = await response.Content.ReadAsStringAsync();
-                    login = new T();
-                    login = System.Text.Json.JsonSerializer.Deserialize<T>(cont, _serializerOptions);
+                    var obj = System.Text.Json.JsonSerializer.Deserialize<JsonObject>(cont, _serializerOptions);
+                    return obj;
+                }
+                else
+                {
+                    var obj = System.Text.Json.JsonSerializer.Deserialize<JsonObject>(cont, _serializerOptions);
+                    throw new Exception((obj["title"]).ToString());
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(@"ERROR {0}", ex.Message);
-                //throw new Exception("Server Connection Error");
+                Console.WriteLine($"ERROR {ex.Message}");
+                throw new Exception(ex.Message);
             }
-
-            return login;
         }
 
-        public async Task<bool> InsertAsync<T>(T item) where T : class, new()
+        public async Task<JsonObject> InsertAsync<T>(T item) where T : class, new()
         {
             try
             {
-                StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(item),
-                                                             Encoding.UTF8, "application/json");
-
+                StringContent content = new(Newtonsoft.Json.JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
+               
+               // _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",
+               //                                                   Auth.Auth.Token);
                 HttpResponseMessage response = await _client.PostAsync(GetPath<T>(), content);
+                string cont = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    var obj = System.Text.Json.JsonSerializer.Deserialize<JsonObject>(cont, _serializerOptions);
+                    return obj;
+                }
+                else
+                {
+                    var obj = System.Text.Json.JsonSerializer.Deserialize<JsonObject>(cont, _serializerOptions);
+                    throw new Exception((obj["title"]).ToString());
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error Insert http - " + e.Message);
-                throw new Exception("Server Connection Error");
+                Console.WriteLine($"ERROR {ex.Message}");
+                throw new Exception(ex.Message);
             }
-
-            return false;
         }
 
         public async Task<bool> UpdateDataAsync<T>(int id, T item) where T : class, new()
@@ -197,6 +204,10 @@ namespace Web1.Services.Repository
             if (typeof(T) == typeof(LoginModel))
             {
                 path = Constants.ServerPaths.Auth_URL;
+            }
+            else if (typeof(T) == typeof(RegisterModel))
+            {
+                path = Constants.ServerPaths.Register_URL;
             }
 
             return path;

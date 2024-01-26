@@ -76,14 +76,24 @@ namespace Web1.ViewModels
 
         private async void OkClick()
         {
-            // System.Console.WriteLine($"Ppppppppppp {IsValidInput}");
-            //if (InpPath?.Length > 10)
-            //{
-            //    var parameters = new NavigationParameters { { "path", InpPath } };
-            //    await _navigationService.NavigateAsync("HomePage", parameters);
-            //}
+            try
+            {
+                if (IsValidInput)
+                {
+                    var res = await _auth.AuthAsync(Login, Password);
+                    System.Console.WriteLine($"AAAAAAAAA {res.Email} {res.Token}");
 
-            await _auth.AuthAsync(Login, Password);
+                    if (InpPath?.Length > 10)
+                    {
+                        var parameters = new NavigationParameters { { "path", InpPath } };
+                        await _navigationService.NavigateAsync("HomePage", parameters);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Ssssssss {ex.Message}");
+            }
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)

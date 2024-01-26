@@ -7,6 +7,7 @@ namespace Web1.Services.Auth
 {
     public interface IAuth
     {
-        Task<(bool, (string, LoginModel))> AuthAsync(string email, string password);
+        Task<OkResponse> AuthAsync(string email, string password);
+        Task<OkResponse> InsertAsync(RegisterModel profile);
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 
+using Web1.Models;
 using Web1.Services.Auth;
 
 
@@ -67,7 +68,20 @@ namespace Web1.ViewModels
 
         private async void SignUpClick()
         {
-                await _navigationService.NavigateAsync("MainPage");
+            RegisterModel registerModel = new() { Email = Login, Password = Password };
+            try
+            {
+                if (IsValidInput)
+                {
+                    var res = await _auth.InsertAsync(registerModel);
+                    System.Console.WriteLine($"AAAAAAAAA {res.Email} {res.Token}");
+                    await _navigationService.NavigateAsync("MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Ssssssss {ex.Message}");
+            }
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
