@@ -1,16 +1,14 @@
 
 
 using Web1_Server;
+using Web1_Server.Services.JwtService;
+using Web1_Server.Services.PrintService;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 
 
 
@@ -64,6 +62,9 @@ builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             // указывает, будет ли валидироваться издатель при валидации токена
@@ -92,8 +93,8 @@ builder.Services.AddDbContextPool<DB_Context>(options => options.UseSqlServer(co
 builder.Services.AddHttpContextAccessor();
 
 //add services
-//builder.Services.AddTransient<ICheckDisabledStreams, CheckDisabledStreams>();
-//builder.Services.AddScoped<IFFmpegService, FFmpegService>();
+builder.Services.AddScoped<IPrint, Print>();
+builder.Services.AddScoped<IJwtToken, JwtToken>();
 
 var app = builder.Build();
 
