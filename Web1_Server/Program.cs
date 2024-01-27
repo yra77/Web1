@@ -2,6 +2,7 @@
 
 using Web1_Server;
 using Web1_Server.Services.JwtService;
+using Web1_Server.Services.HashService;
 using Web1_Server.Services.PrintService;
 
 using Microsoft.EntityFrameworkCore;
@@ -67,19 +68,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            // указывает, будет ли валидироваться издатель при валидации токена
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             ValidateIssuer = true,
-            // строка, представляющая издателя
+            // пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             ValidIssuer = Web1_Server.Constants.JwtConstant.ISSUER,
-            // будет ли валидироваться потребитель токена
+            // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             ValidateAudience = true,
-            // установка потребителя токена
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             ValidAudience = Web1_Server.Constants.JwtConstant.AUDIENCE,
-            // будет ли валидироваться время существования
+            // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             ValidateLifetime = true,
-            // установка ключа безопасности
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             IssuerSigningKey = Web1_Server.Constants.JwtConstant.GetSymmetricSecurityKey(),
-            // валидация ключа безопасности
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             ValidateIssuerSigningKey = true,
         };
     });
@@ -93,6 +94,7 @@ builder.Services.AddDbContextPool<DB_Context>(options => options.UseSqlServer(co
 builder.Services.AddHttpContextAccessor();
 
 //add services
+builder.Services.AddScoped<IHash, Hash>();
 builder.Services.AddScoped<IPrint, Print>();
 builder.Services.AddScoped<IJwtToken, JwtToken>();
 

@@ -2,6 +2,7 @@
 
 using Web1_Server.Models;
 using Web1_Server.Services.JwtService;
+using Web1_Server.Services.HashService;
 using Web1_Server.Services.PrintService;
 
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +21,17 @@ namespace Web1_Server.Controllers
 
 
         private readonly DB_Context _context;
+        private readonly IHash _hash;
         private readonly IPrint _print;
         private readonly IJwtToken _token;
 
 
-        public LoginController(IPrint print,
+        public LoginController(IHash hash,
+                               IPrint print,
                                IJwtToken token,
                                DB_Context context)
         {
+            _hash = hash;
             _print = print;
             _token = token;
             _context = context;
@@ -51,7 +55,7 @@ namespace Web1_Server.Controllers
                     {
                         return Problem(statusCode: 404, title: "Not found email");
                     }
-                    else if (res.Password != data.Password)
+                    else if (res.Password != _hash.ComputeHash(data.Password, data.Email, 5))
                     {
                         return Problem(statusCode: 404, title: "Not found password");
                     }
@@ -96,6 +100,9 @@ namespace Web1_Server.Controllers
                             Email = data.Email,
                             Token = new JwtSecurityTokenHandler().WriteToken(jwt)
                         };
+
+                        //password to hash
+                        data.Password = _hash.ComputeHash(data.Password, data.Email, 5);
 
                         _context.Logins?.Add(data);
                         await _context.SaveChangesAsync();
