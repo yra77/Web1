@@ -26,6 +26,7 @@ namespace Web1
                              .RegisterForNavigation<HomePage, HomePageViewModel>("HomePage")
                              .RegisterForNavigation<SlotPage, SlotPageViewModel>("SlotPage")
                              .RegisterForNavigation<SignUpPage, SignUpPageViewModel>("SignUpPage")
+                             .RegisterForNavigation<CarouselPage, CarouselPageViewModel>("CarouselPage")
                              .RegisterInstance(SemanticScreenReader.Default);
 
             //Services

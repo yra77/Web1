@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Web1.Views.CarouselPage"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic"
+             xmlns:controls="clr-namespace:Web1.Controls"
+             xmlns:controlsCarous="clr-namespace:Web1.Controls.CarouselGraphics"
+             prism:Navigation.CanNavigate="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="CarouselPage">
+
+
+    <Grid HorizontalOptions="Fill"
+                    Padding="0,0,0,0">
+
+        <!--<controls:Carousel VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                      ItemsSource="{Binding CarouList}"
+                      IsScrollAnimated="False"
+                      Position="{Binding Position}"
+                      Loop="True"
+                      IsBounceEnabled="True"
+                      PeekAreaInsets="500"/>-->
+
+        <!--<controls:MyCarousel VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             ItemsList="{Binding CarouList}"
+                             Position="{Binding Position}"
+                             Orientation="Horizontal"
+                             Spacing="0"/>-->
+
+        <controlsCarous:CarouselView HeightRequest="400"
+                                     MinimumWidthRequest="260"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     BackgroundColor="Transparent"
+                                     Delay="5">
+            <controlsCarous:CarouselView.TextList>
+                 <x:Array Type="{x:Type x:String}">
+                                <x:String>Аааааааа</x:String>
+                                <x:String>Bbbbbbbb</x:String>
+                                <x:String>Cccccccc</x:String>
+                                <x:String>Dddddddd</x:String>
+                                <x:String>Eeeeeeee</x:String>
+                                <x:String>Ffffffff</x:String>
+                                <x:String>Gggggggg</x:String>
+                            </x:Array>
+            </controlsCarous:CarouselView.TextList>
+            <!--<controlsCarous:CarouselView.Images>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>slot0img.png</x:String>
+                                <x:String>slot1img.png</x:String>
+                                <x:String>slot2img.png</x:String>
+                                <x:String>slot3img.png</x:String>
+                                <x:String>slot4img.png</x:String>
+                                <x:String>slot3img.png</x:String>
+                                <x:String>slot4img.png</x:String>
+                            </x:Array>
+                        </controlsCarous:CarouselView.Images>-->
+        </controlsCarous:CarouselView>
+
+    </Grid>
+</ContentPage>

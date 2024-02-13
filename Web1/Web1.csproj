@@ -90,6 +90,7 @@
 	  <None Remove="Controls\Graphic\WinLines\" />
 	  <None Remove="Resources\Images\square_add.png" />
 	  <None Remove="Resources\Images\square_remove.png" />
+	  <None Remove="Controls\CarouselGraphics\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Controls\" />
@@ -98,6 +99,7 @@
 	  <Folder Include="Services\WinsSlot\" />
 	  <Folder Include="Services\SettingsManager\" />
 	  <Folder Include="Controls\Graphic\WinLines\" />
+	  <Folder Include="Controls\CarouselGraphics\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\arrow_left.png" />

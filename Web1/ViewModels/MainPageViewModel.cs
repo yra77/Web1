@@ -66,7 +66,8 @@ namespace Web1.ViewModels
 
         private async void GoSignUpClick()
         {
-            await _navigationService.NavigateAsync("SignUpPage");
+            // await _navigationService.NavigateAsync("SignUpPage");
+            await _navigationService.NavigateAsync("CarouselPage");
         }
 
         private async void AuthGoogleApple(string obj)
